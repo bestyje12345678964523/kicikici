@@ -1,0 +1,30 @@
+name: dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'json strategy'
+        type: string
+        required: true
+      os:
+        description: 'json strategy'
+        type: string
+        required: true
+
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ${{ fromJSON(inputs.version) }}
+        os: ${{ fromJSON(inputs.os) }}
+
+      
+    steps:
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Environment: $ENVIRONMENT"
+        env:
+          Version: ${{ matrix.version }}
+          OS: ${{ matrix.os }}
