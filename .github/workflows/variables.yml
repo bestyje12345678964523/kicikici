@@ -19,8 +19,8 @@ jobs:
         echo "Should be variable in step scope:$STEP_VAR"
       env:
         REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
-        ORGANIZATION_VAR: ${{ vars.bestyje12345678964523.ORGANIZATION_VAR }}
-        ENVIRONMENT_VAR: ${{ vars.test.ENVIRONMENT_VAR }}
+        ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
+        ENVIRONMENT_VAR: ${{ vars.ENVIRONMENT_VAR }}
     
     - name: Use variables 2
       run: |
