@@ -1,0 +1,36 @@
+on:
+  workflow_dispatch:
+env:
+  cat_name: "Puszek"
+  WORKFLOW_VAR: "Workflow"
+
+jobs:
+  display-variables:
+    name: ${{vars.test.ENVIRONMENT_VAR}}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use variables 1
+      run: |
+        echo "Repository variable : $vars.REPOSITORY_VAR"
+        echo "Organization variable : $vars.bestyje12345678964523.ORGANIZATION_VAR"
+        echo "Environment variable : $vars.test.ENVIRONMENT_VAR"
+        echo "Alice has a cat named $env.cat_name"
+        echo "Should be variable in workflow scope:$WORKFLOW_VAR"
+        echo "Should be variable in job scope:$JOB_VAR"
+        echo "Should be variable in step scope:$STEP_VAR"
+    
+    - name: Use variables 2
+      run: |
+        echo "Alice has a cat named $env.cat_name"
+        echo "Should be variable in workflow scope:$WORKFLOW_VAR"
+        echo "Should be variable in job scope:$JOB_VAR"
+        echo "Should NOT be variable in step scope:$STEP_VAR"
+
+  display-variables2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use variables in display-variables2
+      run: |
+        echo "Should be variable in workflow scope:$WORKFLOW_VAR"
+        echo "Should NOT be variable in job scope:$JOB_VAR"
+        echo "Should NOT be variable in step scope:$STEP_VAR"
